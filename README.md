@@ -18,7 +18,7 @@ The wavelet transformation is a complete transformation in the sense that it dec
 ### 1D Wavelet Transform
 ![1D Wavelet Transform](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/1D%20Wavelet%20Transform.GIF)
 
-The periodic variation of the sine signal is reflected in the wavelet coefficients of the various orders, which also vary periodically. The "undulation" reflects the change in between the wavelet and the sine functions: the overlap between the wavelet and the signal changes depending on the position. 
+The periodic variation of the sine signal is reflected in the wavelet coefficients of the various orders, which also vary periodically. The "undulation" reflects the change in phase between the wavelet and the sine functions: the overlap between the wavelet and the signal changes depending on the wavelet position. 
 
 ### Excel Import
 ![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
