@@ -13,7 +13,11 @@ The slider can be used to change the wavelet index from 0 to 1023 which will cha
 
 For better visibilty I have applied a dynamic range compression with the function *"sign(x)\*log(1+abs(x))"* so the picture is not dominated by very few large magnitude values. I have also set values with small magnitude to white color, which gives a better contrast than a grey background. For the remaining values I have applied a color coding. Thereby I avoid that large negative or positive values will also be mapped to white and disappear.
 
-The wavelet transformation is a complete transformation in the sense that it decomposes the picture until the remaining length reaches 4. The decomposition is not performed simultaneously for the 2 coordinate directions, as is often done, but it is performed independently for the two directions. Therefore, the aspect ratio of the rectangles changes by a factor of 2 in the x or in the y direction. The low index wavelets, which capture the smooth variations, correspond to the upper left corner of the image. As expected, the picture is "sparse" and only a few values are significantly different from zero.
+The wavelet transformation is a complete transformation in the sense that it decomposes the picture until the remaining length reaches 4. You can adjust the code accordingly if you want to stop at a level. 
+
+The decomposition is not performed simultaneously for the 2 coordinate directions, as is often done, but it is performed independently for the two directions. Therefore, the aspect ratio of the rectangles changes by a factor of 2 in the x or in the y direction. The low index wavelets, which capture the smooth variations, correspond to the upper left corner of the image. As expected, the picture is "sparse" and only a few values are significantly different from zero. 
+
+A simultaneous decomposition in two directions might result in a better compression, at least the non-zero values will be concentrated in fewer squares when the resolution isn't coarse in one direction and fine in the other direction. I dont know if the overall statistics of non-zero components would also change. On the other hand this decomposition allows to find out whether the x and y directions behave differently.
 
 ### 1D Wavelet Transform
 ![1D Wavelet Transform](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/1D%20Wavelet%20Transform.GIF)
