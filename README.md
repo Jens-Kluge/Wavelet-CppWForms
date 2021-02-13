@@ -6,7 +6,7 @@ Wavelet tools for 1D and 2D wavelet transform.
 ### Wavelet Selection
 ![Wavelet Selection](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/WaveletSelection.GIF)
 
-The slider can be used to change the wavelet index from 0 to 1023 which will change the wavelet order and position. 
+The slider can be used to change the wavelet index from 0 to 1023 which will change the wavelet order and position. The order 0 zero has only two positions, the next order 2 has 4 positions, etc. until order 9, which has 512 positions and the wavelets of the smallest scale. You can play around with the slider to find out. 
 
 ### 2D Wavelet Transform
 ![2D Wavelet Transform](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/2D%20Wavelet%20Transform.GIF)
@@ -18,7 +18,9 @@ The wavelet transformation is a complete transformation in the sense that it dec
 ### 1D Wavelet Transform
 ![1D Wavelet Transform](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/1D%20Wavelet%20Transform.GIF)
 
+The periodic variation of the sine signal is reflected in the wavelet coefficients of the various orders, which also vary periodically. The "undulation" reflects the change in between the wavelet and the sine functions: the overlap between the wavelet and the signal changes depending on the position. 
+
 ### Excel Import
 ![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
 
-Set of 33.351 wind speed measurements for 40 m above ground level (AGL), zero-padded to the next power of 2. 
+Set of 33.351 wind speed measurements for 40 m above ground level (AGL), zero-padded to the next power of 2. A decomposition of the signal into different levels (upcoming) will allow to differentiate the daily/seasonal variations of the wind speed from the random fluctuations. 
