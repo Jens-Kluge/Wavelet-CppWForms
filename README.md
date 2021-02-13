@@ -13,3 +13,4 @@ Wavelet tools for 1D and 2D wavelet transform.
 ![1D Wavelet Transform](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/1D%20Wavelet%20Transform.GIF)
 
 ### Excel Import
+![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
