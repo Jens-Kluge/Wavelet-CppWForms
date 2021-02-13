@@ -297,9 +297,7 @@ private: void DisplayWavelet(int wltIdx, int idx) {
 	if (idx == -1) {
 		idx = displayidx;
 	}
-	trackBar1->Value = idx;
-	legendtext = String::Format("{0}({1})", legendtext, idx);
-	signal[idx] = 1;
+
 	if (idx == -1) {
 		idx = displayidx;
 	}
