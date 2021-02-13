@@ -1,9 +1,10 @@
 # Wavelet-CppWForms
 Wavelet tools for 1D and 2D wavelet transform.
 
-Screenshots:
-## Wavelet Selection
+## Screenshots:
 
-## 2D Wavelet Transform
+### Wavelet Selection
 
-## Excel Import
+### 2D Wavelet Transform
+
+### Excel Import
