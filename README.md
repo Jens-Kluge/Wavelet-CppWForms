@@ -1,6 +1,20 @@
 # Wavelet-CppWForms
 Wavelet tools for 1D and 2D wavelet transform.
 
+So far I have realized the functions
+- 1D wavelet decomposition
+- selection of wavelet filter
+- 2D wavelet decomposition, with independent decimation of x and y direction
+- data import from Excel
+- generated signal using a signal generator
+
+Planned features:
+- signal decomposition into different levels
+- visualization with one curve/level or color coding/level
+- more wavelet types
+- standard 2D wavelet decomposition 
+- data export to Excel
+
 ## Screenshots:
 
 ### Wavelet Selection
