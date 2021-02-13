@@ -14,3 +14,5 @@ Wavelet tools for 1D and 2D wavelet transform.
 
 ### Excel Import
 ![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
+
+Set of 33.351 wind speed measurements for 40 m above ground level (AGL), zero-padded to the next power of 2. 
