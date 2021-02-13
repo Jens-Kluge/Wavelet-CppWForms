@@ -2,8 +2,8 @@
 Wavelet tools for 1D and 2D wavelet transform.
 
 Screenshots:
-##Wavelet Selection
+## Wavelet Selection
 
-##2D Wavelet Transform
+## 2D Wavelet Transform
 
-##Excel Import
+## Excel Import
