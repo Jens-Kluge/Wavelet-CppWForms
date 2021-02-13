@@ -24,3 +24,5 @@ The periodic variation of the sine signal is reflected in the wavelet coefficien
 ![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
 
 Set of 33.351 wind speed measurements for 40 m above ground level (AGL), zero-padded to the next power of 2. A decomposition of the signal into different levels (upcoming) will allow to differentiate the daily/seasonal variations of the wind speed from the random fluctuations. 
+
+You can click on the button next to the range textfield to minimize the control to the size of the textbox and button. For selection you can click on the first cell and then into the text field to activate the control. As long as the control is active the displayed cell range is adjusted to the current selection. You can also click on the extend button to extend the range to the end. Data Import works via direct assignment to an object array as opoposed to looping through the spreadsheet rows. This method is reasonably fast and can handle large data sets with over 32.000 rows. 
