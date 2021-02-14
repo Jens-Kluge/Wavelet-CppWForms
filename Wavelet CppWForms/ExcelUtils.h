@@ -3,6 +3,8 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
+void ExportDatasetToExcel(String^ outputPath, cli::array<double, 2>^ arr);
+
 ref class ExcelUtils
 {
 

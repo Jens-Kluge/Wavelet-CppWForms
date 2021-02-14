@@ -10,6 +10,7 @@
 #include "frmSettings.h"
 #include "frmSignalSelection.h"
 #include "frmDWT2D.h"
+#include "frmExport.h"
 
 namespace CppCLRWinformsProjekt {
 	
@@ -48,6 +49,7 @@ namespace CppCLRWinformsProjekt {
 
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 	private: System::Windows::Forms::ToolStripMenuItem^ selectSignalToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ exportDataToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ dDWTToolStripMenuItem;
 	
 	protected:
@@ -88,7 +90,6 @@ namespace CppCLRWinformsProjekt {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
@@ -110,6 +111,7 @@ namespace CppCLRWinformsProjekt {
 			this->chrtSignal = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->exportDataToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
 			this->splitContainer1->Panel1->SuspendLayout();
@@ -134,9 +136,9 @@ namespace CppCLRWinformsProjekt {
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->openToolStripMenuItem,
-					this->selectSignalToolStripMenuItem
+					this->selectSignalToolStripMenuItem, this->exportDataToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(46, 24);
@@ -145,14 +147,14 @@ namespace CppCLRWinformsProjekt {
 			// openToolStripMenuItem
 			// 
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
-			this->openToolStripMenuItem->Size = System::Drawing::Size(178, 26);
+			this->openToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->openToolStripMenuItem->Text = L"Select &Image";
 			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::openToolStripMenuItem_Click);
 			// 
 			// selectSignalToolStripMenuItem
 			// 
 			this->selectSignalToolStripMenuItem->Name = L"selectSignalToolStripMenuItem";
-			this->selectSignalToolStripMenuItem->Size = System::Drawing::Size(178, 26);
+			this->selectSignalToolStripMenuItem->Size = System::Drawing::Size(224, 26);
 			this->selectSignalToolStripMenuItem->Text = L"Select &Signal";
 			this->selectSignalToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::selectSignalToolStripMenuItem_Click);
 			// 
@@ -169,21 +171,21 @@ namespace CppCLRWinformsProjekt {
 			// DWTToolStripMenuItem
 			// 
 			this->DWTToolStripMenuItem->Name = L"DWTToolStripMenuItem";
-			this->DWTToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->DWTToolStripMenuItem->Size = System::Drawing::Size(183, 26);
 			this->DWTToolStripMenuItem->Text = L"&Forward DWT";
 			this->DWTToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::DWTToolStripMenuItem_Click);
 			// 
 			// backwardToolStripMenuItem
 			// 
 			this->backwardToolStripMenuItem->Name = L"backwardToolStripMenuItem";
-			this->backwardToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->backwardToolStripMenuItem->Size = System::Drawing::Size(183, 26);
 			this->backwardToolStripMenuItem->Text = L"&Inverse DWT";
 			this->backwardToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::backwardToolStripMenuItem_Click);
 			// 
 			// dDWTToolStripMenuItem
 			// 
 			this->dDWTToolStripMenuItem->Name = L"dDWTToolStripMenuItem";
-			this->dDWTToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->dDWTToolStripMenuItem->Size = System::Drawing::Size(183, 26);
 			this->dDWTToolStripMenuItem->Text = L"&2D DWT";
 			this->dDWTToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::dDWTToolStripMenuItem_Click);
 			// 
@@ -197,7 +199,7 @@ namespace CppCLRWinformsProjekt {
 			// dWTSettingsToolStripMenuItem
 			// 
 			this->dWTSettingsToolStripMenuItem->Name = L"dWTSettingsToolStripMenuItem";
-			this->dWTSettingsToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->dWTSettingsToolStripMenuItem->Size = System::Drawing::Size(125, 26);
 			this->dWTSettingsToolStripMenuItem->Text = L"&DWT";
 			this->dWTSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::dWTSettingsToolStripMenuItem_Click);
 			// 
@@ -258,6 +260,13 @@ namespace CppCLRWinformsProjekt {
 			// openFileDialog1
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
+			// 
+			// exportDataToolStripMenuItem
+			// 
+			this->exportDataToolStripMenuItem->Name = L"exportDataToolStripMenuItem";
+			this->exportDataToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->exportDataToolStripMenuItem->Text = L"E&xport Data";
+			this->exportDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::exportDataToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -444,6 +453,10 @@ private: System::Void selectSignalToolStripMenuItem_Click(System::Object^ sender
 	Wavelet_CppWForms::frmSignalSelection^ fmSignalSelection = gcnew Wavelet_CppWForms::frmSignalSelection;
 	fmSignalSelection->ShowDialog();
 	m_SelSignal = fmSignalSelection->m_SelSignal;
+}
+private: System::Void exportDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	Wavelet_CppWForms::frmExport^ fmExport = gcnew Wavelet_CppWForms::frmExport;
+	fmExport->ShowDialog();
 }
 };
 }

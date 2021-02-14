@@ -307,8 +307,19 @@ namespace Wavelet_CppWForms {
 
 		lstSignal->SelectedIndex = enSignalType::Sawtooth;
 		//Excel has been started by the application
-		if (GlobalVars::g_Excel != nullptr) {
+		
+		//Excel has not yet been started by the application
+		if (GlobalVars::g_Excel == nullptr) {
+			refEdit1->Enabled = false;
+			btnStartXL->Enabled = true;
+			btnRead->Enabled = false;
+		}
+		else {
+			
 			refEdit1->_Excel = GlobalVars::g_Excel;
+			btnStartXL->Enabled = false;
+			btnRead->Enabled = true;
+
 			try {
 				GlobalVars::g_Excel->Visible = true;
 			}
@@ -316,13 +327,10 @@ namespace Wavelet_CppWForms {
 			catch (Exception^ ex) {
 				refEdit1->Enabled = false;
 				btnStartXL->Enabled = true;
+				btnRead->Enabled = false;
 			}
 		}
-		//Excel has not yet been started by the application
-		else {
-			refEdit1->Enabled = false;
-		}
-
+		
 		rbEnd->Checked = true;
 	}
 	private: System::Void btnStartXL_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -370,7 +378,10 @@ namespace Wavelet_CppWForms {
 		this->Cursor = Cursors::WaitCursor;
 
 		ExcelUtils::GetRange(rg, refEdit1->Text, ok);
-		if (!ok) return;
+		if (!ok) {
+			this->Cursor = Cursors::Arrow;
+			return;
+		}
 
 		/* dispose previous m_signal bef allocating new one?*/
 		std::vector<double> signal(rg->Rows->Count);

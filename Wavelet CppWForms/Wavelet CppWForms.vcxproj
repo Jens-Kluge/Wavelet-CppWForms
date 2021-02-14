@@ -152,6 +152,9 @@
     <ClInclude Include="frmDWT2D.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmExport.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmSettings.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -177,6 +180,7 @@
     <ClCompile Include="DWT.cpp" />
     <ClCompile Include="ExcelUtils.cpp" />
     <ClCompile Include="frmDWT2D.cpp" />
+    <ClCompile Include="frmExport.cpp" />
     <ClCompile Include="frmSettings.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="MainForm.cpp" />
@@ -212,6 +216,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmDWT2D.resx">
       <DependentUpon>frmDWT2D.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExport.resx">
+      <DependentUpon>frmExport.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.h</DependentUpon>

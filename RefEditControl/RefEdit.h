@@ -581,6 +581,7 @@ private: System::Void RefEdit_Enter(System::Object^ sender, System::EventArgs^ e
 	setThisControlActive();
 	
 	if (_Excel == nullptr) return;
+	if (_Excel->ActiveSheet == nullptr) return;
 
 	try
 	{ 
@@ -614,7 +615,7 @@ private: System::Void RefEdit_Enter(System::Object^ sender, System::EventArgs^ e
 
 			if (!Visible || !Enabled) return;
 
-			if (_Excel == nullptr)
+			if (_Excel == nullptr || _Excel->ActiveSheet == nullptr)
 			{
 				return;
 			}
