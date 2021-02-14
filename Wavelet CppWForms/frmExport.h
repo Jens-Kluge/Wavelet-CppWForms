@@ -190,9 +190,11 @@ namespace Wavelet_CppWForms {
 		}
 		ExportDatasetToExcel(fname, arrtest);
 	}
+
 	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 		Close();
 	}
+
 	private: System::Void frmExport_Load(System::Object^ sender, System::EventArgs^ e) {
 		rbSignal->Checked = true;
 	}

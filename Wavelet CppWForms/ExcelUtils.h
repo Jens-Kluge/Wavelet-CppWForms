@@ -13,7 +13,7 @@ public: static void GetRange(Excel::Range^& rg, String^ s, bool& ok) {
     //Get range with address s, set ok to true if this address Is valid
     ok = true;
     try {
-        rg = safe_cast<Excel::Worksheet^>(GlobalVars::g_Excel->ActiveSheet)->Range[s, s];
+        rg = safe_cast<Excel::Worksheet^>(GlobalVars::g_Excel->ActiveSheet)->Range[s, Type::Missing];
         return;
     }
     catch (Exception^ ex) {
