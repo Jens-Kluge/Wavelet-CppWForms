@@ -38,6 +38,11 @@ A simultaneous decomposition in two directions might result in a better compress
 
 The periodic variation of the sine signal is reflected in the wavelet coefficients of the various orders, which also vary periodically. The "undulation" reflects the change in phase between the wavelet and the sine functions: the overlap between the wavelet and the signal changes depending on the wavelet position. 
 
+### Level decomposition
+![Level decomposition](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/WvltLevels.GIF)
+
+Subset of 200 windspeed data. This level decomposition is "cumlulative", which means that I added the contributions of all lower levels up to the displayed level number. In order to obtain a smooth approximation I chose a smooth wavelet, in this example the Coiflet6 with 30 taps. The contribution of all levels up to N - 4 does a good job in approximating the general trend of the wind speeds. There are artifacts at the boundaries that look similar to the Gibbs phenomenon for FFT.
+
 ### Excel Import
 ![Excel Import](https://github.com/Jens-Kluge/Wavelet-CppWForms/blob/master/Screenshots/Excel%20Import.GIF)
 
