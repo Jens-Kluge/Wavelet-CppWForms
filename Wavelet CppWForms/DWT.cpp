@@ -394,3 +394,50 @@ double Coiflets::c30[30] =
 -0.000041340432, -0.000021315027, 0.000003734655, 0.000002063762,
 -0.000000167443, -0.000000095177 };
 
+//input: 
+//vector in, which contains a one dimensional DWT
+//level, the level to be retrieved
+//out: a vector where all components outside the level are set to zero
+//cum: sum together the effect of all lower levels (cumulative)
+void getlevel(std::vector<double> in, std::vector<double>& out, int level, bool cum) {
+	int N;
+	N = log2(in.size());
+	//for a full decompositions, the levels are 0,..., N-1
+	if (level > (N - 1)) return;
+	out = in;
+	//set all components outside of [2^(N-level-1), 2^(N-level)-1] to zero
+	int lowerboundary;
+	if (!cum) {
+		lowerboundary = pow(2, level) - 1;
+	}
+	else {
+		lowerboundary = 0;
+	}
+	for (int i = 0; i < in.size(); i++) {
+		if (i < lowerboundary || i > (pow(2, level+1) - 1)) {
+			out[i] = 0;
+		}
+	}
+}
+
+// same as above, but for cli::array
+void getlevel(cli::array<double>^ in, cli::array<double>^& out, int level, bool cum) {
+	int N;
+	N = log2(in->Length);
+	//there is only a maximum of N levels
+	if (level > (N - 1)) return;
+	out = in;
+	//set all components outside of [2^(N-level-1), 2^(N-level)-1] to zero
+	int lowerboundary;
+	if (!cum) {
+		lowerboundary = pow(2, level) - 1;
+	}
+	else {
+		lowerboundary = 0;
+	}
+	for (int i = 0; i < in->Length; i++) {
+		if (i < lowerboundary || i >(pow(2, level + 1) - 1)) {
+			out[i] = 0;
+		}
+	}
+};

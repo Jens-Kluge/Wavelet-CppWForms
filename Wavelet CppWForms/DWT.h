@@ -50,7 +50,11 @@ struct Daublets : Wavelet {
 };
 
 void wt1(std::vector<double>& a, const int isign, Wavelet& wlet);
+void getlevel(std::vector<double> in, std::vector<double>& out, int level, bool cum=false);
+void getlevel(cli::array<double>^ in, cli::array<double>^& out, int level, bool cum=false);
+
 void wtn(std::vector<double>& a, std::vector<int>& nn, const int isign, Wavelet& wlet);
+
 
 struct Symlets : Wavelet {
 	int ncof, ioff, joff;

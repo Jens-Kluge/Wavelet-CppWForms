@@ -155,12 +155,16 @@
     <ClInclude Include="frmExport.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmLevels.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmSettings.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Globals.h" />
     <ClInclude Include="gnuplot_i.h" />
     <ClInclude Include="DWT.h" />
+    <ClInclude Include="kiss_fft.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -172,6 +176,8 @@
     </ClInclude>
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="wavelet2d.h" />
+    <ClInclude Include="_kiss_fft_guts.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -181,8 +187,10 @@
     <ClCompile Include="ExcelUtils.cpp" />
     <ClCompile Include="frmDWT2D.cpp" />
     <ClCompile Include="frmExport.cpp" />
+    <ClCompile Include="frmLevels.cpp" />
     <ClCompile Include="frmSettings.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="kiss_fft.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -193,6 +201,7 @@
     <ClCompile Include="frmSignalSelection.cpp" />
     <ClCompile Include="SignalGenerator.cpp" />
     <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="wavelet2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Pictures\image resources\graph.bmp" />
@@ -219,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExport.resx">
       <DependentUpon>frmExport.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLevels.resx">
+      <DependentUpon>frmLevels.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.h</DependentUpon>

@@ -9,7 +9,7 @@ using namespace System;
 //}
 
 #include "MainForm.h"
-
+#include "Utilities.h"
 
 using namespace System::Windows::Forms;
 [STAThread]

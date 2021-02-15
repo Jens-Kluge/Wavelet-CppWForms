@@ -65,6 +65,18 @@
     <ClInclude Include="frmExport.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="kiss_fft.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="wavelet2d.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="_kiss_fft_guts.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="frmLevels.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -107,6 +119,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="frmExport.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="wavelet2d.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="kiss_fft.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="frmLevels.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
