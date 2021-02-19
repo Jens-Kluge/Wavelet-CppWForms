@@ -42,7 +42,6 @@ namespace CppCLRWinformsProjekt {
 	public:
 		//holds the result of the DWT
 		cli::array<double>^ m_DWT;
-		int m_SelWvlt = (int) enWavelets::Daubechies4;
 		SignalType m_SelSignal = enSignalType::Sawtooth;
 		String^ m_ImagePath;
 		String^ m_ImageFileName;
@@ -357,17 +356,17 @@ namespace CppCLRWinformsProjekt {
 		chart1->ChartAreas[0]->AxisX->Interval = nearestpow10(signal.size())/10;
 
 		DataVisualization::Charting::Series^ series2 = chart1->Series->Add("DWT");
-		SetTitle(m_SelWvlt);
+		SetTitle(GlobalVars::g_SelWvlet);
 		series2->ChartType = DataVisualization::Charting::SeriesChartType::Line;
 		
 		//copy the DWT into the array m_DWT
 		System::Array::Resize(m_DWT, signal.size());
 		for (int i = 0; i < signal.size(); i++) {
 			series2->Points->AddXY(i, signal[i]);
-			m_DWT->SetValue(signal[i], i);
+			m_DWT[i] = signal[i];
 		}
-		GlobalVars::g_DWT = m_DWT;
-		
+		Array::Resize(GlobalVars::g_DWT, m_DWT->Length);
+		Array::Copy(m_DWT, GlobalVars::g_DWT, m_DWT->Length);
 	}
 
 	private: void MarkLevelBoundaries(int signalLength) {
@@ -403,26 +402,25 @@ namespace CppCLRWinformsProjekt {
 private: System::Void dWTSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Wavelet_CppWForms::frmSettings^ fmSettings = gcnew Wavelet_CppWForms::frmSettings();
 	fmSettings->ShowDialog();
-	m_SelWvlt = fmSettings->m_SelWvlt;
 }
 
 /*----------------------------------------------------
 * 
-* Calculate the Inverse DWT of the array m_DWT
+* Calculate the Inverse DWT of the array g_DWT
 * 
 *----------------------------------------------------*/
 private: System::Void backwardToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 	//if resultset is empty do nothing
-	if (m_DWT->Length == 0) return;
-	int length = m_DWT->Length;
+	if (GlobalVars::g_DWT->Length == 0) return;
+	int length = GlobalVars::g_DWT->Length;
 	//clr allows only members of managed type 
 	//=> need to do an ugly member-wise copy here
 	std::vector<double> signal(length); 
 	for (int i = 0; i < length; i++) {
-		signal[i] = System::Convert::ToDouble(m_DWT->GetValue(i));
+		signal[i] = GlobalVars::g_DWT[i];
 	}
-	Wavelet* wvlt = GetWvlt(m_SelWvlt);
+	Wavelet* wvlt = GetWvlt(GlobalVars::g_SelWvlet);
 	wt1(signal, -1, *wvlt);
 	
 	chrtSignal->Series->Clear();
@@ -431,7 +429,7 @@ private: System::Void backwardToolStripMenuItem_Click(System::Object^ sender, Sy
 	chrtSignal->ChartAreas[0]->AxisX->Interval = nearestpow10(GlobalVars::g_Signal->Length) / 10;
 
 	Charting::Series^ series = chrtSignal->Series->Add("IDWT");
-	SetTitle(m_SelWvlt);
+	SetTitle(GlobalVars::g_SelWvlet);
 	series->ChartType = DataVisualization::Charting::SeriesChartType::Line;
 	for (int i = 0; i < signal.size(); i++) {
 		series->Points->AddXY(i, signal[i]);
