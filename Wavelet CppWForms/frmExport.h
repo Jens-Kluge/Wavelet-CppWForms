@@ -171,7 +171,7 @@ namespace Wavelet_CppWForms {
 		sfdExport->Filter = "Excel files (*.xlsx)|*.xlsx";
 		sfdExport->FileName = "Mydata.xlsx";
 
-	
+
 		sfdExport->InitialDirectory = Environment::GetFolderPath(Environment::SpecialFolder::Desktop);
 
 		if (sfdExport->ShowDialog() == Windows::Forms::DialogResult::OK) {
@@ -180,15 +180,32 @@ namespace Wavelet_CppWForms {
 		else {
 			return;
 		}
+		
 
-		//copy signal data into 2D array
-		if (GlobalVars::g_Signal == nullptr) return;
-
-		cli::array<double, 2>^ arrtest = gcnew cli::array<double,2>(GlobalVars::g_Signal->Length, 1);
-		for (int i = 0; i < GlobalVars::g_Signal->Length; i++) {
-			arrtest[i,0] = GlobalVars::g_Signal[i];
+		if (rbSignal->Checked) {
+			if (GlobalVars::g_Signal == nullptr) return;
+			cli::array<double, 2>^ arrsignal = gcnew cli::array<double, 2>(GlobalVars::g_Signal->Length, 1);
+			for (int i = 0; i < GlobalVars::g_Signal->Length; i++) {
+				arrsignal[i, 0] = GlobalVars::g_Signal[i];
+			}
+			ExportDatasetToExcel(fname, arrsignal, "Signal");
 		}
-		ExportDatasetToExcel(fname, arrtest);
+		else if (rb1DDWT->Checked) {
+			if (GlobalVars::g_DWT == nullptr) return;
+			cli::array<double, 2>^ arrsignal = gcnew cli::array<double, 2>(GlobalVars::g_DWT->Length, 1);
+			for (int i = 0; i < GlobalVars::g_DWT->Length; i++) {
+				arrsignal[i, 0] = GlobalVars::g_DWT[i];
+			}
+			ExportDatasetToExcel(fname, arrsignal, "1D DWT");
+		}
+		else if (rbImage->Checked) {
+			if (GlobalVars::g_Image == nullptr) return;
+			ExportDatasetToExcel(fname, GlobalVars::g_Image, "Image");
+		}
+		else if (rb2DDWT->Checked) {
+			if (GlobalVars::g_2DDWT == nullptr) return;
+			ExportDatasetToExcel(fname, GlobalVars::g_2DDWT, "2D DWT");
+		}
 	}
 
 	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {

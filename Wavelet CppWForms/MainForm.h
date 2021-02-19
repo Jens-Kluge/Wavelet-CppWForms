@@ -347,7 +347,7 @@ namespace CppCLRWinformsProjekt {
 		}
 
 		//perform DWT
-		Wavelet* wvlt = GetWvlt(m_SelWvlt);
+		Wavelet* wvlt = GetWvlt(GlobalVars::g_SelWvlet);
 		wt1(signal, 1, *wvlt);
 
 		//Display the DWT of the signal

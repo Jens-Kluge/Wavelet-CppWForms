@@ -11,6 +11,7 @@ namespace Wavelet_CppWForms {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Runtime::InteropServices;
 
 	/// <summary>
 	/// Summary for frmLevels
@@ -149,6 +150,11 @@ namespace Wavelet_CppWForms {
 			return;
 		}
 
+		if (GlobalVars::g_DWT == nullptr || GlobalVars::g_DWT->Length == 0) {
+			MessageBox::Show("Compute the DWT first");
+			return;
+		}
+
 		chrtSignal->Series->Clear();
 		chrtSignal->ChartAreas[0]->AxisX->Minimum = 0;
 		chrtSignal->ChartAreas[0]->AxisX->Maximum = GlobalVars::g_Signal->Length;
@@ -157,33 +163,28 @@ namespace Wavelet_CppWForms {
 
 		DataVisualization::Charting::Series^ series1 = chrtSignal->Series->Add("Signal");
 		series1->ChartType = DataVisualization::Charting::SeriesChartType::Line;
+
 		for (int i = 0; i < GlobalVars::g_Signal->Length; i++) {
 			series1->Points->AddXY(i, GlobalVars::g_Signal[i]);
 		}
 
-		//copy the array into the std::vector
-		std::vector<double> signal(GlobalVars::g_Signal->Length);
-		for (int i = 0; i < GlobalVars::g_Signal->Length; i++) {
-			signal[i] = GlobalVars::g_Signal[i];
-		}
-
-		//Display the level decomposition of the signal
-		std::vector<double> vecLevel(signal.size());
+		cli::array<double>^ arrLevel = gcnew cli::array<double>(GlobalVars::g_Signal->Length);
 
 		chrtLevels->Series->Clear();
 		chrtLevels->ChartAreas[0]->AxisX->Minimum = 0;
-		chrtLevels->ChartAreas[0]->AxisX->Maximum = vecLevel.size();
-		chrtLevels->ChartAreas[0]->AxisX->Interval = nearestpow10(vecLevel.size()) / 10;
-
-		//perform DWT
+		chrtLevels->ChartAreas[0]->AxisX->Maximum = arrLevel->Length;
+		chrtLevels->ChartAreas[0]->AxisX->Interval = nearestpow10(arrLevel->Length) / 10;
+		
 		Wavelet* wvlt = GetWvlt(GlobalVars::g_SelWvlet);
-		wt1(signal, 1, *wvlt);
-		int numlevels = log2(signal.size());
+		int numlevels = log2(arrLevel->Length);
 		//show only the highest four levels to avoid cluttering
 		int minlevel = max(0, numlevels - 4);
 		for (int level = (numlevels-1); level >= minlevel; level--) {
 
-			getlevel(signal, vecLevel, level, true);
+			getlevel(GlobalVars::g_DWT, arrLevel, level, true);
+
+			std::vector<double> vecLevel(arrLevel->Length);
+			Marshal::Copy(arrLevel, 0, IntPtr(&vecLevel[0]), arrLevel->Length);
 			wt1(vecLevel, -1, *wvlt);
 
 			DataVisualization::Charting::Series^ series2 = chrtLevels->Series->Add(String::Format("Level {0}", level));

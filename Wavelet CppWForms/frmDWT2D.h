@@ -154,7 +154,7 @@ namespace Wavelet_CppWForms {
 		ComputeDWT2D(data, width, height);
 		Bitmap^ bmp = WriteImageData(data, width, height);
 		pbDWT->Image = bmp;
-		
+
 	}
 
 	//for debug purposes, to check if grey image is correct
@@ -267,12 +267,15 @@ namespace Wavelet_CppWForms {
 				m_padGreyImage[topmargin+i,leftmargin+j] =  m_GreyImage[i, j];
 			}
 		}
+		GlobalVars::g_Image = m_padGreyImage;
 	}
 
 	private: Bitmap^ WriteImageData(vector<double> data, int width, int height) {
 		int i, j;
 
 		Bitmap^ output = gcnew Bitmap(width, height);
+		GlobalVars::g_2DDWT = gcnew cli::array<double,2>(width, height);
+
 		Imaging::BitmapData^ bitmapData1 = output->LockBits(Rectangle(0, 0, width, height),
 			Imaging::ImageLockMode::ReadOnly, Imaging::PixelFormat::Format32bppArgb);
 
@@ -295,7 +298,8 @@ namespace Wavelet_CppWForms {
 				index = i * width + j;
 				value = data[index];
 				
-				
+				//store result in global variable
+				GlobalVars::g_2DDWT[i, j] = value;
 				// apply dynamic range compression
 				// by logarithmic scaling
 				Color col;
